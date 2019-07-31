@@ -13,7 +13,7 @@ auto v = new std::vector<int>(3, 42);
 
 
 PYBIND11_MODULE(vector_to_array, m) {
-    m.def("get_vector", []() {
+	m.def("get_vector", []() {
 		auto capsule = py::capsule(v, [](void *v) { delete reinterpret_cast<std::vector<int>*>(v); });
 		return py::array_t<int>(v->size(), v->data(), capsule);
 		});
